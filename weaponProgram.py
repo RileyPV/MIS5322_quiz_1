@@ -24,66 +24,69 @@ weapons_file = csv.reader(weapons, delimiter=",")
 
 
 
+
 #skip the header row
 next(weapons_file)
-
 
 
 #create an empty dictionary named 'weapons_dict'
 
 weapons_dict = {}
 
-
 #use a for loop to iterate through every row of the csv file
 for record in weapons_file:
     print(record)
+
     
     #use variables for name,speed and range (optional)
+    weap_name = (record[0])
+    weap_speed = (record[1])
+    weap_range = (record[2])
     
 
     # create an instance of the weapon object using the 
     # specs from the csv file (name,speed and range) 
-    weapons_dict = record
-
+    my_weapon = w.Weapon(weap_name, weap_speed, weap_range)
     # append the name and bullet count to 'weapons_dict'
-    weapons_dict[0] = name
-    weapons_dict[1] = bullet
-
+    weapons_dict["Weapon Name"] = weap_name
+    weapons_dict["Bullet Count"]= my_weapon.get_bullets()
+    print(weapons_dict)
 
 
     # print out the name of the weapon using the appropriate method of the object 
-    print(weapons_dict[0])
+    print(my_weapon.get_name())
     # print out the speed of the weapon using the appropriate method of the object
-    print(weapons_dict[1])
+    print(my_weapon.get_speed())
     # print out the range of the weapon using the appropriate method of the object
-    print(weapons_dict[2])
+    print(my_weapon.get_range())
     # print out the number of bullets of the weapon using the appropriate method of the object
-    print()
+    print(my_weapon.get_bullets())
 
     #use an input statement to halt the program and wait for the user - 
     input("Press any key to fire the weapon")
     
-
     # use an appropriate loop to keep firing the weapon until all bullets run out
-    for bullet in weapons_dict:
-
+    for count in range(my_weapon.get_bullets()):
         # call the appropriate method to fire a bullet
-       
+        my_weapon.fire_bullet(my_weapon.get_bullets())
         # print out the bullet count every time the weapon is fired
-        print("The bullet count is:", my_weapon.get_bullets())
+        print(my_weapon.get_bullets())
 
     
 
 
 #using a loop print out the name and number of bullets from the dictionary
+for record in weapons_dict:
+    print(weapons_dict["Weapon Name"])
+    print(weapons_dict["Bullet Count"])
 
 
-
-
+print(weapons_dict)
     
 
 
     
+
 
 
 
